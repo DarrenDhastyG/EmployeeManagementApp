@@ -14,7 +14,7 @@ import com.employeeManagement.springboot.model.csvHelper;
 public class CSVService {
   @Autowired
   EmployeeRepository repository;
-  public void save(MultipartFile file) {
+  public void save(MultipartFile file) throws IOException {
     try {
       List<Employee> employees = csvHelper.csvToEmployees(file.getInputStream());
       repository.saveAll(employees);

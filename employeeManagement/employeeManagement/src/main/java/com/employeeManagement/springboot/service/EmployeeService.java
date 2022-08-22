@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.employeeManagement.springboot.exception.ApiException;
 import com.employeeManagement.springboot.exception.UserNotFoundException;
 import com.employeeManagement.springboot.model.Employee;
 import com.employeeManagement.springboot.repository.EmployeeRepository;
@@ -22,9 +23,14 @@ public class EmployeeService {
 		this.employeeRepository = employeeRepository;
 	}
 	
-	public Employee addEmployee(Employee employee) {
+	public Employee addEmployee(Employee employee) throws ApiException {
+		try {
 		employee.setId(UUID.randomUUID().toString().substring(0, 6));
 		return employeeRepository.save(employee);
+		}
+		catch (Exception e) {
+			throw new ApiException(e.getMessage());
+		}
 	}
 	
 	public List<Employee> findAllEmployees() {

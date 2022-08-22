@@ -17,7 +17,7 @@ import com.employeeManagement.springboot.model.Employee;
 public class csvHelper {
 	  public static String TYPE = "text/csv";
 	  static String[] HEADERs = { "id", "login", "name", "salary" };
-	  public static boolean hasCSVFormat(MultipartFile file) {
+	  public static boolean hasCSVFormat(MultipartFile file){
 	    if (!TYPE.equals(file.getContentType())) {
 	      return false;
 	    }
